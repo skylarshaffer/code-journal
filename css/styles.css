@@ -3,6 +3,29 @@ header {
   color: white;
 }
 
+body {
+  background-color: #eee;
+}
+
 .container {
   display: flex;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+img {
+  width: 100%;
+}
+
+input,
+textarea {
+  width: 100%;
+}
+
+button {
+  background-color: #4c2676;
+  color: white;
+  margin-left: auto;
 }
