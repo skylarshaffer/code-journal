@@ -1,22 +1,35 @@
+body {
+  background-color: #eee;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
 header {
-  background-color: #4c2676;
+  background-color: #562b81;
   color: white;
 }
 
-body {
-  background-color: #eee;
+/* headings */
+h1,
+h2 {
+  font-family: 'Proza Libre', sans-serif;
 }
 
-.container {
-  display: flex;
+h1 {
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.875rem;
+  font-weight: 600;
 }
 
-img {
-  width: 100%;
+/* form */
+label {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 600;
+  display: block;
 }
 
 input,
@@ -24,8 +37,40 @@ textarea {
   width: 100%;
 }
 
+input {
+  height: 2.5rem;
+}
+
+textarea {
+  height: calc(149rem / 16);
+}
+
 button {
-  background-color: #4c2676;
+  background-color: #562b81;
   color: white;
+  margin-right: 0;
   margin-left: auto;
+}
+
+.form-item {
+  margin-bottom: 2rem;
+}
+
+body .form-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.form-item.button {
+  display: flex;
+  justify-content: right;
+}
+
+main label {
+  padding-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 0 5.1875rem;
+  }
 }

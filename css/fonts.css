@@ -1,0 +1,64 @@
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+}
+
+.proza-libre-regular {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.proza-libre-medium {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.proza-libre-semibold {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.proza-libre-bold {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.proza-libre-extrabold {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.proza-libre-regular-italic {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.proza-libre-medium-italic {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.proza-libre-semibold-italic {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.proza-libre-bold-italic {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.proza-libre-extrabold-italic {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
