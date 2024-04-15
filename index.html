@@ -35,20 +35,22 @@
         <form>
           <div class="row">
             <div class="column-half">
-              <img src="images/placeholder-image-square.jpg" />
+              <img
+                src="images/placeholder-image-square.jpg"
+                alt="Placeholder image" />
             </div>
             <div class="column-half">
               <div class="row">
                 <label for="title">Title</label>
               </div>
               <div class="row">
-                <input type="text" id="title" name="title" />
+                <input type="text" id="title" name="title" required />
               </div>
               <div class="row">
                 <label for="photoUrl">Photo URL</label>
               </div>
               <div class="row">
-                <input type="text" id="photoUrl" name="photoUrl" />
+                <input type="text" id="photoUrl" name="photoUrl" required />
               </div>
             </div>
           </div>
@@ -58,7 +60,7 @@
                 <label for="notes">Notes</label>
               </div>
               <div class="row">
-                <textarea id="notes" name="notes"></textarea>
+                <textarea id="notes" name="notes" required></textarea>
               </div>
             </div>
           </div>
