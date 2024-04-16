@@ -43,7 +43,9 @@
               <div class="form-item image">
                 <img
                   src="images/placeholder-image-square.jpg"
-                  alt="Placeholder image" />
+                  alt="Placeholder image"
+                  id="formImg"
+                  onerror="this.src='images/placeholder-image-square.jpg'" />
               </div>
             </div>
             <div class="column-half">
@@ -53,7 +55,7 @@
               </div>
               <div class="form-item input">
                 <label for="photoUrl">Photo URL</label>
-                <input type="text" id="photoUrl" name="photoUrl" required />
+                <input type="url" id="photoUrl" name="photoUrl" required />
               </div>
             </div>
             <div class="column-full">
