@@ -1,7 +1,6 @@
+/* root elements */
 body {
   background-color: #eee;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 400;
 }
 
 header {
@@ -35,6 +34,9 @@ label {
 input,
 textarea {
   width: 100%;
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 }
 
 input {
@@ -50,27 +52,38 @@ button {
   color: white;
   margin-right: 0;
   margin-left: auto;
+  display: flex;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 0.25rem;
+  height: 2rem;
+  width: 4.5rem;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-item {
   margin-bottom: 2rem;
 }
 
-body .form-item:last-of-type {
-  margin-bottom: 0;
-}
-
-.form-item.button {
-  display: flex;
-  justify-content: right;
-}
-
-main label {
+form label {
   padding-bottom: 0.5rem;
 }
 
-@media screen and (min-width: 768px) {
+form img {
+  border-radius: 0.25rem;
+  height: 245px;
+  object-fit: cover;
+}
+
+@media screen and (width >= 768px) {
   .container {
     padding: 0 5.1875rem;
+  }
+
+  form img {
+    height: auto;
   }
 }
