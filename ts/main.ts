@@ -18,13 +18,9 @@ if (!$photoUrl || !$formImg || !$form)
 //  $photoUrl handleInput
 $photoUrl.addEventListener('input', (event: Event) => {
   const eventTarget = event.target as HTMLInputElement | HTMLTextAreaElement;
-  console.log(`value of ${eventTarget.name}:`, eventTarget.value);
-  console.log(`validity of ${eventTarget.name}:`, eventTarget.checkValidity());
   if (eventTarget.checkValidity()) {
-    console.log('$photoUrl input is valid, setting formImg src');
     $formImg.setAttribute('src', eventTarget.value);
   } else {
-    console.log('$photoUrl input is not valid, resetting formImg src');
     $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   }
 });
@@ -39,10 +35,8 @@ $form.addEventListener('submit', (event: Event) => {
     notes: $formElements.notes.value,
     entryId: data.nextEntryId,
   };
-  console.log(formSubmission);
   data.nextEntryId++;
   data.entries.unshift(formSubmission);
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  console.log(data);
 });

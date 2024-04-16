@@ -13,4 +13,3 @@ window.addEventListener('beforeunload', () => {
   const dataJSON = JSON.stringify(data);
   localStorage.setItem('data', dataJSON);
 });
-console.log(data);
