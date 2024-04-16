@@ -1,34 +1,24 @@
-/* global data */
-//  FormElements extended interface
-interface FormElements extends HTMLFormControlsCollection {
-  title: HTMLInputElement;
-  photoUrl: HTMLInputElement;
-  notes: HTMLTextAreaElement;
-}
-
+'use strict';
 //  DOM queries
-const $photoUrl = document.querySelector('#photoUrl') as HTMLInputElement;
-const $formImg = document.querySelector('#formImg') as HTMLImageElement;
-const $form = document.querySelector('form') as HTMLFormElement;
-
+const $photoUrl = document.querySelector('#photoUrl');
+const $formImg = document.querySelector('#formImg');
+const $form = document.querySelector('form');
 //  error coverage
 if (!$photoUrl || !$formImg || !$form)
   throw new Error('One of the dom queries failed');
-
 //  $photoUrl handleInput
-$photoUrl.addEventListener('input', (event: Event) => {
-  const eventTarget = event.target as HTMLInputElement;
+$photoUrl.addEventListener('input', (event) => {
+  const eventTarget = event.target;
   if (eventTarget.checkValidity()) {
     $formImg.setAttribute('src', eventTarget.value);
   } else {
     $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   }
 });
-
 //  $form handleSubmit
-$form.addEventListener('submit', (event: Event) => {
+$form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const $formElements: FormElements = $form.elements as FormElements;
+  const $formElements = $form.elements;
   const formSubmission = {
     title: $formElements.title.value,
     photoUrl: $formElements.photoUrl.value,

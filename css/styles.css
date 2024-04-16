@@ -1,0 +1,89 @@
+/* root elements */
+body {
+  background-color: #eee;
+}
+
+header {
+  background-color: #562b81;
+  color: white;
+}
+
+/* headings */
+h1,
+h2 {
+  font-family: 'Proza Libre', sans-serif;
+}
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 1.875rem;
+  font-weight: 600;
+}
+
+/* form */
+label {
+  font-family: 'Proza Libre', sans-serif;
+  font-weight: 600;
+  display: block;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-size: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+input {
+  height: 2.5rem;
+}
+
+textarea {
+  height: calc(149rem / 16);
+}
+
+button {
+  background-color: #562b81;
+  color: white;
+  margin-right: 0;
+  margin-left: auto;
+  display: flex;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 0;
+  border-radius: 0.25rem;
+  height: 2rem;
+  width: 4.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-item {
+  margin-bottom: 2rem;
+}
+
+form label {
+  padding-bottom: 0.5rem;
+}
+
+form img {
+  border-radius: 0.25rem;
+  height: 245px;
+  object-fit: cover;
+}
+
+@media screen and (width >= 768px) {
+  .container {
+    padding: 0 5.1875rem;
+  }
+
+  form img {
+    height: 340px;
+  }
+}
