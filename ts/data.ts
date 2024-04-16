@@ -1,8 +1,16 @@
 /* exported data */
+interface Entry {
+  title: string;
+  photoUrl: string;
+  notes: string;
+  entryId: number;
+}
 
-let data = {
+const data = {
   view: 'entry-form',
-  entries: [],
+  entries: [] as Entry[],
   editing: null,
   nextEntryId: 1,
 };
+
+console.log(data);
