@@ -4,9 +4,27 @@ body {
   font-weight: 400;
 }
 
+img,
+input,
+textarea {
+  width: 100%;
+}
+
 header {
   background-color: #562b81;
   color: white;
+}
+
+/* flexbox */
+.flex-full,
+.flex-half {
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .flex-half {
+    flex-basis: 50%;
+  }
 }
 
 /* headings */
@@ -52,12 +70,14 @@ button {
   margin-left: auto;
 }
 
-.form-item {
-  margin-bottom: 2rem;
+#form {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
 }
 
-body .form-item:last-of-type {
-  margin-bottom: 0;
+.form-item {
+  margin-top: 2rem;
 }
 
 .form-item.button {
