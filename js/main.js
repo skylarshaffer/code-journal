@@ -11,8 +11,10 @@ $photoUrl.addEventListener('input', (event) => {
   const eventTarget = event.target;
   if (eventTarget.checkValidity()) {
     $formImg.setAttribute('src', eventTarget.value);
+    $formImg.setAttribute('alt', 'Your image');
   } else {
     $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $formImg.setAttribute('alt', 'Placeholder image');
   }
 });
 //  $form handleSubmit
