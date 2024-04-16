@@ -17,7 +17,7 @@ if (!$photoUrl || !$formImg || !$form)
 
 //  $photoUrl handleInput
 $photoUrl.addEventListener('input', (event: Event) => {
-  const eventTarget = event.target as HTMLInputElement | HTMLTextAreaElement;
+  const eventTarget = event.target as HTMLInputElement;
   if (eventTarget.checkValidity()) {
     $formImg.setAttribute('src', eventTarget.value);
   } else {

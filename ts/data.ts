@@ -6,9 +6,16 @@ interface Entry {
   entryId: number;
 }
 
-let data = {
+interface Data {
+  view: string;
+  entries: Entry[];
+  editing: null;
+  nextEntryId: number;
+}
+
+let data: Data = {
   view: 'entry-form',
-  entries: [] as Entry[],
+  entries: [],
   editing: null,
   nextEntryId: 1,
 };
