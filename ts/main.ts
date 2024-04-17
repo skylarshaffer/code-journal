@@ -8,6 +8,8 @@ interface FormElements extends HTMLFormControlsCollection {
 
 //  DOM queries
 const $photoUrl = document.querySelector('#photoUrl') as HTMLInputElement;
+const $title = document.querySelector('#title') as HTMLInputElement;
+const $notes = document.querySelector('#notes') as HTMLTextAreaElement;
 const $formImg = document.querySelector('#formImg') as HTMLImageElement;
 const $form = document.querySelector('form') as HTMLFormElement;
 const $ul = document.querySelector('ul') as HTMLUListElement;
@@ -20,11 +22,13 @@ const $divEntryForm = document.querySelector(
 ) as HTMLDivElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
 const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
-const $formTitle = document.querySelector('form h2') as HTMLHeadingElement;
+const $formHeading = document.querySelector('form h2') as HTMLHeadingElement;
 
 //  error coverage
 if (
   !$photoUrl ||
+  !$title ||
+  !$notes ||
   !$formImg ||
   !$form ||
   !$ul ||
@@ -71,16 +75,30 @@ $form.addEventListener('submit', (event: Event) => {
 
 //  $ul handleClick
 $ul.addEventListener('click', (event: Event) => {
-  viewSwap('entry-form');
-  const eventTarget = event.target as HTMLAnchorElement;
-  let i = 0;
-  while (i < data.entries.length) {
-    if (data.entries[i].entryId.toString() === eventTarget.dataset.entryId) {
-      data.editing = data.entries[i];
+  const eventTarget = event.target as HTMLElement;
+  if (eventTarget.className.includes('fa-pen')) {
+    const $selectedLi = eventTarget.closest('li') as HTMLLIElement;
+    if ($selectedLi) {
+      let i = 0;
+      while (i < data.entries.length) {
+        if (
+          data.entries[i].entryId.toString() === $selectedLi.dataset.entryId
+        ) {
+          data.editing = data.entries[i];
+          break;
+        }
+        i++;
+      }
+      if (data.editing) {
+        $photoUrl.value = data.editing.photoUrl;
+        $title.value = data.editing.title;
+        $notes.value = data.editing.notes;
+        $formImg.src = data.editing.photoUrl;
+      }
     }
-    i++;
+    $formHeading.textContent = 'Edit Entry';
+    viewSwap('entry-form');
   }
-  $formTitle.textContent = 'Edit Entry';
 });
 
 //  render HTML element for entry

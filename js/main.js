@@ -1,6 +1,8 @@
 'use strict';
 //  DOM queries
 const $photoUrl = document.querySelector('#photoUrl');
+const $title = document.querySelector('#title');
+const $notes = document.querySelector('#notes');
 const $formImg = document.querySelector('#formImg');
 const $form = document.querySelector('form');
 const $ul = document.querySelector('ul');
@@ -9,10 +11,12 @@ const $divEntries = document.querySelector("div[data-view='entries']");
 const $divEntryForm = document.querySelector("div[data-view='entry-form']");
 const $aEntries = document.querySelector('.navbar a');
 const $aNEW = document.querySelector('a.button');
-const $formTitle = document.querySelector('form h2');
+const $formHeading = document.querySelector('form h2');
 //  error coverage
 if (
   !$photoUrl ||
+  !$title ||
+  !$notes ||
   !$formImg ||
   !$form ||
   !$ul ||
@@ -56,16 +60,30 @@ $form.addEventListener('submit', (event) => {
 });
 //  $ul handleClick
 $ul.addEventListener('click', (event) => {
-  viewSwap('entry-form');
   const eventTarget = event.target;
-  let i = 0;
-  while (i < data.entries.length) {
-    if (data.entries[i].entryId.toString() === eventTarget.dataset.entryId) {
-      data.editing = data.entries[i];
+  if (eventTarget.className.includes('fa-pen')) {
+    const $selectedLi = eventTarget.closest('li');
+    if ($selectedLi) {
+      let i = 0;
+      while (i < data.entries.length) {
+        if (
+          data.entries[i].entryId.toString() === $selectedLi.dataset.entryId
+        ) {
+          data.editing = data.entries[i];
+          break;
+        }
+        i++;
+      }
+      if (data.editing) {
+        $photoUrl.value = data.editing.photoUrl;
+        $title.value = data.editing.title;
+        $notes.value = data.editing.notes;
+        $formImg.src = data.editing.photoUrl;
+      }
     }
-    i++;
+    $formHeading.textContent = 'Edit Entry';
+    viewSwap('entry-form');
   }
-  $formTitle.textContent = 'Edit Entry';
 });
 //  render HTML element for entry
 function renderEntry(entry) {
