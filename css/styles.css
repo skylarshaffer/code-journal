@@ -129,6 +129,10 @@ li.empty p {
   text-align: center;
 }
 
+div[data-view='entries'] {
+  width: 100%;
+}
+
 /* desktop responsive */
 @media screen and (width >= 768px) {
   .container {
