@@ -1,17 +1,17 @@
 'use strict';
 //  DOM queries
-const $photoUrl = document.querySelector('#photoUrl');
-const $title = document.querySelector('#title');
-const $notes = document.querySelector('#notes');
-const $formImg = document.querySelector('#formImg');
 const $form = document.querySelector('form');
+const $photoUrl = $form.querySelector('#photoUrl');
+const $title = $form.querySelector('#title');
+const $notes = $form.querySelector('#notes');
+const $formImg = $form.querySelector('#formImg');
 const $ul = document.querySelector('ul');
 const $liEmpty = document.querySelector('li.empty');
-const $divEntries = document.querySelector("div[data-view='entries']");
-const $divEntryForm = document.querySelector("div[data-view='entry-form']");
 const $aEntries = document.querySelector('.navbar a');
 const $aNEW = document.querySelector('a.button');
 const $formHeading = document.querySelector('form h2');
+const $divEntries = document.querySelector("div[data-view='entries']");
+const $divEntryForm = document.querySelector("div[data-view='entry-form']");
 //  error coverage
 if (
   !$photoUrl ||
@@ -21,10 +21,10 @@ if (
   !$form ||
   !$ul ||
   !$liEmpty ||
-  !$divEntries ||
-  !$divEntryForm ||
   !$aEntries ||
-  !$aNEW
+  !$aNEW ||
+  !$divEntries ||
+  !$divEntryForm
 )
   throw new Error('One of the dom queries failed');
 //  $photoUrl handleInput
@@ -47,14 +47,35 @@ $form.addEventListener('submit', (event) => {
       title: $formElements.title.value,
       photoUrl: $formElements.photoUrl.value,
       notes: $formElements.notes.value,
+      //  set entryId to next available
       entryId: data.nextEntryId,
     };
     data.nextEntryId++;
     data.entries.unshift(formSubmission);
-    $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
-    $form.reset();
+    //  prepend list with rendered DOM
     $ul.prepend(renderEntry(formSubmission));
+  } else {
+    const $formElements = $form.elements;
+    const formSubmission = {
+      title: $formElements.title.value,
+      photoUrl: $formElements.photoUrl.value,
+      notes: $formElements.notes.value,
+      //  set entryId to currently editing entryId
+      entryId: data.editing.entryId,
+    };
+    data.entries[formSubmission.entryId] = formSubmission;
+    //  select li with matching data-entry-id
+    const $liReplace = $ul.querySelector(
+      `li.entry[data-entry-id="${formSubmission.entryId}"]`
+    );
+    //  replace corresponding li in list with rendered DOM
+    $ul.replaceChild(renderEntry(formSubmission), $liReplace);
+    //  reset form title and data.editing
+    $formHeading.textContent = 'New Entry';
+    data.editing = null;
   }
+  $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
   if ($liEmpty.className === 'empty') {
     toggleNoEntries();
   }

@@ -7,22 +7,22 @@ interface FormElements extends HTMLFormControlsCollection {
 }
 
 //  DOM queries
-const $photoUrl = document.querySelector('#photoUrl') as HTMLInputElement;
-const $title = document.querySelector('#title') as HTMLInputElement;
-const $notes = document.querySelector('#notes') as HTMLTextAreaElement;
-const $formImg = document.querySelector('#formImg') as HTMLImageElement;
 const $form = document.querySelector('form') as HTMLFormElement;
+const $photoUrl = $form.querySelector('#photoUrl') as HTMLInputElement;
+const $title = $form.querySelector('#title') as HTMLInputElement;
+const $notes = $form.querySelector('#notes') as HTMLTextAreaElement;
+const $formImg = $form.querySelector('#formImg') as HTMLImageElement;
 const $ul = document.querySelector('ul') as HTMLUListElement;
 const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
+const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
+const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
+const $formHeading = document.querySelector('form h2') as HTMLHeadingElement;
 const $divEntries = document.querySelector(
   "div[data-view='entries']"
 ) as HTMLDivElement;
 const $divEntryForm = document.querySelector(
   "div[data-view='entry-form']"
 ) as HTMLDivElement;
-const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
-const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
-const $formHeading = document.querySelector('form h2') as HTMLHeadingElement;
 
 //  error coverage
 if (
@@ -33,10 +33,10 @@ if (
   !$form ||
   !$ul ||
   !$liEmpty ||
-  !$divEntries ||
-  !$divEntryForm ||
   !$aEntries ||
-  !$aNEW
+  !$aNEW ||
+  !$divEntries ||
+  !$divEntryForm
 )
   throw new Error('One of the dom queries failed');
 
@@ -61,14 +61,35 @@ $form.addEventListener('submit', (event: Event) => {
       title: $formElements.title.value,
       photoUrl: $formElements.photoUrl.value,
       notes: $formElements.notes.value,
+      //  set entryId to next available
       entryId: data.nextEntryId,
     };
     data.nextEntryId++;
     data.entries.unshift(formSubmission);
-    $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
-    $form.reset();
+    //  prepend list with rendered DOM
     $ul.prepend(renderEntry(formSubmission));
+  } else {
+    const $formElements: FormElements = $form.elements as FormElements;
+    const formSubmission = {
+      title: $formElements.title.value,
+      photoUrl: $formElements.photoUrl.value,
+      notes: $formElements.notes.value,
+      //  set entryId to currently editing entryId
+      entryId: data.editing.entryId,
+    };
+    data.entries[formSubmission.entryId] = formSubmission;
+    //  select li with matching data-entry-id
+    const $liReplace = $ul.querySelector(
+      `li.entry[data-entry-id="${formSubmission.entryId}"]`
+    ) as HTMLLIElement;
+    //  replace corresponding li in list with rendered DOM
+    $ul.replaceChild(renderEntry(formSubmission), $liReplace);
+    //  reset form title and data.editing
+    $formHeading.textContent = 'New Entry';
+    data.editing = null;
   }
+  $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
   if ($liEmpty.className === 'empty') {
     toggleNoEntries();
   }
