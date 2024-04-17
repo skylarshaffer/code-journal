@@ -2,6 +2,7 @@
 body {
   /* scrollbar shift hotfix */
   width: 100vw;
+  overflow-x: hidden;
   background-color: #eee;
 }
 
