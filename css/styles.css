@@ -1,5 +1,7 @@
 /* root elements */
 body {
+  /* scrollbar shift hotfix */
+  width: 100vw;
   background-color: #eee;
 }
 
@@ -8,9 +10,16 @@ header {
   color: white;
 }
 
+.navbar,
+.h2bar {
+  display: flex;
+  align-items: center;
+}
+
 /* headings */
 h1,
-h2 {
+h2,
+h3 {
   font-family: 'Proza Libre', sans-serif;
 }
 
@@ -24,6 +33,18 @@ h2 {
   font-weight: 600;
 }
 
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+a {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  margin: 0 1rem;
+}
+
 /* form */
 label {
   font-family: 'Proza Libre', sans-serif;
@@ -32,11 +53,13 @@ label {
 }
 
 input,
-textarea {
+textarea,
+p {
   width: 100%;
   font-size: 1rem;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+  line-height: 25.6px;
 }
 
 input {
@@ -47,7 +70,8 @@ textarea {
   height: calc(149rem / 16);
 }
 
-button {
+button,
+a.button {
   background-color: #562b81;
   color: white;
   margin-right: 0;
@@ -64,26 +88,53 @@ button {
   justify-content: center;
 }
 
-.form-item {
+button,
+a {
+  cursor: pointer;
+}
+
+/* entries */
+div[data-view='entries'] {
+  width: 100%;
+}
+
+.entry {
   margin-bottom: 2rem;
 }
 
-form label {
+li.empty p {
+  text-align: center;
+}
+
+ul {
+  width: 100%;
+}
+
+/* items */
+.form-item,
+.entry-item {
+  margin-bottom: 2rem;
+}
+
+.form-item label {
   padding-bottom: 0.5rem;
 }
 
-form img {
+.form-item img,
+.entry-item img {
   border-radius: 0.25rem;
   height: 245px;
   object-fit: cover;
 }
 
+/* desktop responsive */
 @media screen and (width >= 768px) {
   .container {
     padding: 0 5.1875rem;
   }
 
-  form img {
+  .form-item img,
+  .entry-item img {
     height: 340px;
   }
 }

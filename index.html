@@ -21,22 +21,22 @@
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-
   <body>
     <header>
       <div class="container">
         <div class="row">
-          <div class="column-full">
+          <div class="column-full navbar">
             <h1>Code Journal</h1>
+            <a>Entries</a>
           </div>
         </div>
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="hidden">
         <form>
           <div class="row">
-            <div class="column-full">
+            <div class="column-full h2bar">
               <h2>New Entry</h2>
             </div>
             <div class="column-half">
@@ -45,7 +45,7 @@
                   src="images/placeholder-image-square.jpg"
                   alt="Placeholder image"
                   id="formImg"
-                  onerror="this.src='images/placeholder-image-square.jpg'" />
+                  onerror="this.src='images/placeholder-image-square.jpg';this.alt='Placeholder image'" />
               </div>
             </div>
             <div class="column-half">
@@ -72,7 +72,27 @@
           </div>
         </form>
       </div>
-      <div data-view="entries" class="hidden"></div>
+      <div data-view="entries">
+        <div class="row">
+          <div class="column-full h2bar">
+            <h2>Entries</h2>
+            <a class="button">NEW</a>
+          </div>
+        </div>
+        <div class="row">
+          <ul>
+            <li class="empty">
+              <div class="row">
+                <div class="column-full">
+                  <div class="entry-item notes">
+                    <p>No entries have been recorded.</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
