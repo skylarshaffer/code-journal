@@ -129,6 +129,7 @@ li.empty p {
   text-align: center;
 }
 
+ul,
 div[data-view='entries'] {
   width: 100%;
 }
