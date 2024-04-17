@@ -10,7 +10,8 @@ header {
 
 /* headings */
 h1,
-h2 {
+h2,
+h3 {
   font-family: 'Proza Libre', sans-serif;
 }
 
@@ -24,6 +25,12 @@ h2 {
   font-weight: 600;
 }
 
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
 /* form */
 label {
   font-family: 'Proza Libre', sans-serif;
@@ -32,11 +39,13 @@ label {
 }
 
 input,
-textarea {
+textarea,
+p {
   width: 100%;
   font-size: 1rem;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+  line-height: 25.6px;
 }
 
 input {
@@ -64,18 +73,25 @@ button {
   justify-content: center;
 }
 
-.form-item {
+/* items */
+.form-item,
+.entry-item {
   margin-bottom: 2rem;
 }
 
-form label {
+.form-item label {
   padding-bottom: 0.5rem;
 }
 
-form img {
+.form-item img,
+.entry-item img {
   border-radius: 0.25rem;
   height: 245px;
   object-fit: cover;
+}
+
+.entry {
+  margin-bottom: 2rem;
 }
 
 @media screen and (width >= 768px) {
@@ -83,7 +99,8 @@ form img {
     padding: 0 5.1875rem;
   }
 
-  form img {
+  .form-item img,
+  .entry-item img {
     height: 340px;
   }
 }

@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-
   <body>
     <header>
       <div class="container">
@@ -33,7 +32,7 @@
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form">
+      <div data-view="entry-form" class="hidden">
         <form>
           <div class="row">
             <div class="column-full">
@@ -72,7 +71,69 @@
           </div>
         </form>
       </div>
-      <div data-view="entries" class="hidden"></div>
+      <div data-view="entries">
+        <div class="row">
+          <div class="column-full">
+            <h2>Entries</h2>
+          </div>
+        </div>
+        <ul>
+          <li class="entry">
+            <div class="row">
+              <div class="column-half">
+                <div class="entry-item image">
+                  <img
+                    src="images/ada-lovelace.png"
+                    onerror="this.src='images/placeholder-image-square.jpg';this.alt='Placeholder image'" />
+                </div>
+              </div>
+              <div class="column-half">
+                <div class="entry-item title">
+                  <h3>Ada Lovelace</h3>
+                </div>
+                <div class="entry-item notes">
+                  <p>
+                    Augusta Ada King, Countess of Lovelace was an English
+                    mathematician and writer, chiefly known for her work on
+                    Charles Babbage's proposed mechanical general-purpose
+                    computer, the Analytical Engine.<br /><br />
+                    She was the first to recognize that the machine had
+                    applications beyond pure calculation, and to have published
+                    the first algorithm intended to be carried out by such a
+                    machine.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="entry">
+            <div class="row">
+              <div class="column-half">
+                <div class="entry-item image">
+                  <img
+                    src="images/javascript.png"
+                    onerror="this.src='images/placeholder-image-square.jpg';this.alt='Placeholder image'" />
+                </div>
+              </div>
+              <div class="column-half">
+                <div class="entry-item title">
+                  <h3>JavaScript</h3>
+                </div>
+                <div class="entry-item notes">
+                  <p>
+                    JavaScript, often abbreviated as JS, is a programming
+                    language that conforms to the ECMAScript specification.
+                    <br /><br />JavaScript is high-level, often just-in-time
+                    compiled, and multi-paradigm. It has curly-bracket syntax,
+                    dynamic typing, prototype-based object-orientation, and
+                    first-class functions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
