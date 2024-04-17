@@ -20,6 +20,7 @@ const $divEntryForm = document.querySelector(
 ) as HTMLDivElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
 const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
+const $formTitle = document.querySelector('form h2') as HTMLHeadingElement;
 
 //  error coverage
 if (
@@ -68,12 +69,26 @@ $form.addEventListener('submit', (event: Event) => {
   viewSwap('entries');
 });
 
+//  $ul handleClick
+$ul.addEventListener('click', (event: Event) => {
+  viewSwap('entry-form');
+  const eventTarget = event.target as HTMLAnchorElement;
+  let i = 0;
+  while (i < data.entries.length) {
+    if (data.entries[i].entryId.toString() === eventTarget.dataset.entryId) {
+      data.editing = data.entries[i];
+    }
+    i++;
+  }
+  $formTitle.textContent = 'Edit Entry';
+});
+
 //  render HTML element for entry
 function renderEntry(entry: Entry): HTMLLIElement {
   //  li
   const $li = document.createElement('li');
   $li.className = 'entry';
-  $li.setAttribute('data-entry-id', entry.entryId.toString());
+  $li.dataset.entryId = entry.entryId.toString();
   //  div.row
   const $row = document.createElement('div');
   $row.className = 'row';
@@ -159,10 +174,12 @@ function viewSwap(string: string): void {
 }
 
 //  swap views based on clicked anchor
+//  $aEntries handleClick
 $aEntries.addEventListener('click', () => {
   viewSwap('entries');
 });
 
+//  $aNEW handleClick
 $aNEW.addEventListener('click', () => {
   viewSwap('entry-form');
 });

@@ -9,6 +9,7 @@ const $divEntries = document.querySelector("div[data-view='entries']");
 const $divEntryForm = document.querySelector("div[data-view='entry-form']");
 const $aEntries = document.querySelector('.navbar a');
 const $aNEW = document.querySelector('a.button');
+const $formTitle = document.querySelector('form h2');
 //  error coverage
 if (
   !$photoUrl ||
@@ -53,12 +54,25 @@ $form.addEventListener('submit', (event) => {
   }
   viewSwap('entries');
 });
+//  $ul handleClick
+$ul.addEventListener('click', (event) => {
+  viewSwap('entry-form');
+  const eventTarget = event.target;
+  let i = 0;
+  while (i < data.entries.length) {
+    if (data.entries[i].entryId.toString() === eventTarget.dataset.entryId) {
+      data.editing = data.entries[i];
+    }
+    i++;
+  }
+  $formTitle.textContent = 'Edit Entry';
+});
 //  render HTML element for entry
 function renderEntry(entry) {
   //  li
   const $li = document.createElement('li');
   $li.className = 'entry';
-  $li.setAttribute('data-entry-id', entry.entryId.toString());
+  $li.dataset.entryId = entry.entryId.toString();
   //  div.row
   const $row = document.createElement('div');
   $row.className = 'row';
@@ -140,9 +154,11 @@ function viewSwap(string) {
   data.view = string;
 }
 //  swap views based on clicked anchor
+//  $aEntries handleClick
 $aEntries.addEventListener('click', () => {
   viewSwap('entries');
 });
+//  $aNEW handleClick
 $aNEW.addEventListener('click', () => {
   viewSwap('entry-form');
 });
