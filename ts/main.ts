@@ -55,18 +55,20 @@ $photoUrl.addEventListener('input', (event: Event) => {
 //  $form handleSubmit
 $form.addEventListener('submit', (event: Event) => {
   event.preventDefault();
-  const $formElements: FormElements = $form.elements as FormElements;
-  const formSubmission = {
-    title: $formElements.title.value,
-    photoUrl: $formElements.photoUrl.value,
-    notes: $formElements.notes.value,
-    entryId: data.nextEntryId,
-  };
-  data.nextEntryId++;
-  data.entries.unshift(formSubmission);
-  $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
-  $ul.prepend(renderEntry(formSubmission));
+  if (!data.editing) {
+    const $formElements: FormElements = $form.elements as FormElements;
+    const formSubmission = {
+      title: $formElements.title.value,
+      photoUrl: $formElements.photoUrl.value,
+      notes: $formElements.notes.value,
+      entryId: data.nextEntryId,
+    };
+    data.nextEntryId++;
+    data.entries.unshift(formSubmission);
+    $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $form.reset();
+    $ul.prepend(renderEntry(formSubmission));
+  }
   if ($liEmpty.className === 'empty') {
     toggleNoEntries();
   }
