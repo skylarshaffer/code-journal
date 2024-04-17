@@ -1,5 +1,7 @@
 /* root elements */
 body {
+  /* scrollbar shift hotfix */
+  width: 100vw;
   background-color: #eee;
 }
 
@@ -102,6 +104,10 @@ div[data-view='entries'] {
 
 li.empty p {
   text-align: center;
+}
+
+ul {
+  width: 100%;
 }
 
 /* items */
