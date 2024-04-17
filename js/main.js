@@ -7,6 +7,7 @@ const $ul = document.querySelector('ul');
 const $liEmpty = document.querySelector('li.empty');
 const $divEntries = document.querySelector("div[data-view='entries']");
 const $divEntryForm = document.querySelector("div[data-view='entry-form']");
+const $aEntries = document.querySelector('.navbar a');
 //  error coverage
 if (
   !$photoUrl ||
@@ -127,3 +128,6 @@ function viewSwap(string) {
   data.view = string;
 }
 console.log(viewSwap('entries'));
+$aEntries.addEventListener('click', () => {
+  viewSwap('entries');
+});

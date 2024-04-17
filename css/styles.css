@@ -8,6 +8,11 @@ header {
   color: white;
 }
 
+.navbar {
+  display: flex;
+  align-items: baseline;
+}
+
 /* headings */
 h1,
 h2,
@@ -29,6 +34,12 @@ h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
+}
+
+a {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  margin: 0 1rem;
 }
 
 /* form */

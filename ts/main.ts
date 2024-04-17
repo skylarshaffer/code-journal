@@ -18,6 +18,7 @@ const $divEntries = document.querySelector(
 const $divEntryForm = document.querySelector(
   "div[data-view='entry-form']"
 ) as HTMLDivElement;
+const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
 
 //  error coverage
 if (
@@ -149,3 +150,7 @@ function viewSwap(string: string): void {
 }
 
 console.log(viewSwap('entries'));
+
+$aEntries.addEventListener('click', () => {
+  viewSwap('entries');
+});
