@@ -8,10 +8,10 @@ interface FormElements extends HTMLFormControlsCollection {
 
 //  DOM queries
 const $form = document.querySelector('form') as HTMLFormElement;
-const $photoUrl = $form.querySelector('#photoUrl') as HTMLInputElement;
-const $title = $form.querySelector('#title') as HTMLInputElement;
-const $notes = $form.querySelector('#notes') as HTMLTextAreaElement;
-const $formImg = $form.querySelector('#formImg') as HTMLImageElement;
+const $photoUrl = document.querySelector('#photoUrl') as HTMLInputElement;
+const $title = document.querySelector('#title') as HTMLInputElement;
+const $notes = document.querySelector('#notes') as HTMLTextAreaElement;
+const $formImg = document.querySelector('#formImg') as HTMLImageElement;
 const $ul = document.querySelector('ul') as HTMLUListElement;
 const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
@@ -77,7 +77,15 @@ $form.addEventListener('submit', (event: Event) => {
       //  set entryId to currently editing entryId
       entryId: data.editing.entryId,
     };
-    data.entries[formSubmission.entryId] = formSubmission;
+    //  loop through data.entries and replace the object with matching entryId
+    let i = 0;
+    while (i < data.entries.length) {
+      if (data.entries[i].entryId === formSubmission.entryId) {
+        data.entries[i] = formSubmission;
+        break;
+      }
+      i++;
+    }
     //  select li with matching data-entry-id
     const $liReplace = $ul.querySelector(
       `li.entry[data-entry-id="${formSubmission.entryId}"]`

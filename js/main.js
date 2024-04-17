@@ -1,10 +1,10 @@
 'use strict';
 //  DOM queries
 const $form = document.querySelector('form');
-const $photoUrl = $form.querySelector('#photoUrl');
-const $title = $form.querySelector('#title');
-const $notes = $form.querySelector('#notes');
-const $formImg = $form.querySelector('#formImg');
+const $photoUrl = document.querySelector('#photoUrl');
+const $title = document.querySelector('#title');
+const $notes = document.querySelector('#notes');
+const $formImg = document.querySelector('#formImg');
 const $ul = document.querySelector('ul');
 const $liEmpty = document.querySelector('li.empty');
 const $aEntries = document.querySelector('.navbar a');
@@ -63,7 +63,15 @@ $form.addEventListener('submit', (event) => {
       //  set entryId to currently editing entryId
       entryId: data.editing.entryId,
     };
-    data.entries[formSubmission.entryId] = formSubmission;
+    //  loop through data.entries and replace the object with matching entryId
+    let i = 0;
+    while (i < data.entries.length) {
+      if (data.entries[i].entryId === formSubmission.entryId) {
+        data.entries[i] = formSubmission;
+        break;
+      }
+      i++;
+    }
     //  select li with matching data-entry-id
     const $liReplace = $ul.querySelector(
       `li.entry[data-entry-id="${formSubmission.entryId}"]`
