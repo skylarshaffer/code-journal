@@ -12,9 +12,23 @@ const $formImg = document.querySelector('#formImg') as HTMLImageElement;
 const $form = document.querySelector('form') as HTMLFormElement;
 const $ul = document.querySelector('ul') as HTMLUListElement;
 const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
+const $divEntries = document.querySelector(
+  "div[data-view='entries']"
+) as HTMLDivElement;
+const $divEntryForm = document.querySelector(
+  "div[data-view='entry-form']"
+) as HTMLDivElement;
 
 //  error coverage
-if (!$photoUrl || !$formImg || !$form || !$ul || !$liEmpty)
+if (
+  !$photoUrl ||
+  !$formImg ||
+  !$form ||
+  !$ul ||
+  !$liEmpty ||
+  !$divEntries ||
+  !$divEntryForm
+)
   throw new Error('One of the dom queries failed');
 
 //  $photoUrl handleInput
@@ -122,3 +136,16 @@ function hideNoEntries(): void {
 }
 
 console.log(showNoEntries(), hideNoEntries());
+
+function viewSwap(string: string): void {
+  if (string === 'entries') {
+    $divEntries.className = '';
+    $divEntryForm.className = 'hidden';
+  } else if (string === 'entry-form') {
+    $divEntries.className = 'hidden';
+    $divEntryForm.className = '';
+  }
+  data.view = string;
+}
+
+console.log(viewSwap('entries'));
