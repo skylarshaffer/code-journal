@@ -10,10 +10,11 @@ interface FormElements extends HTMLFormControlsCollection {
 const $photoUrl = document.querySelector('#photoUrl') as HTMLInputElement;
 const $formImg = document.querySelector('#formImg') as HTMLImageElement;
 const $form = document.querySelector('form') as HTMLFormElement;
-const $ul = document.querySelector('ul');
+const $ul = document.querySelector('ul') as HTMLUListElement;
+const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
 
 //  error coverage
-if (!$photoUrl || !$formImg || !$form || !$ul)
+if (!$photoUrl || !$formImg || !$form || !$ul || !$liEmpty)
   throw new Error('One of the dom queries failed');
 
 //  $photoUrl handleInput
@@ -100,3 +101,24 @@ document.addEventListener('DOMContentLoaded', () => {
     i++;
   }
 });
+
+//  Delete if allowed
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function toggleNoEntries(): void {
+  if ($liEmpty.className === 'empty hidden') {
+    $liEmpty.setAttribute('class', 'empty');
+  } else if ($liEmpty.className === 'empty') {
+    $liEmpty.setAttribute('class', 'empty hidden');
+  }
+}
+
+//  Alternatives I'm using for now
+function showNoEntries(): void {
+  $liEmpty.setAttribute('class', 'empty');
+}
+
+function hideNoEntries(): void {
+  $liEmpty.setAttribute('class', 'empty hidden');
+}
+
+console.log(showNoEntries(), hideNoEntries());
