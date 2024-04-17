@@ -12,7 +12,7 @@ header {
 }
 
 .navbar,
-.h2bar {
+.hbar {
   display: flex;
   align-items: center;
 }
@@ -92,6 +92,13 @@ a.button {
 button,
 a {
   cursor: pointer;
+}
+
+.fa-pen {
+  color: #562b81;
+  font-size: 1.5rem;
+  margin-right: 0;
+  margin-left: auto;
 }
 
 /* entries */

@@ -73,6 +73,7 @@ function renderEntry(entry: Entry): HTMLLIElement {
   //  li
   const $li = document.createElement('li');
   $li.className = 'entry';
+  $li.setAttribute('data-entry-id', entry.entryId.toString());
   //  div.row
   const $row = document.createElement('div');
   $row.className = 'row';
@@ -95,10 +96,13 @@ function renderEntry(entry: Entry): HTMLLIElement {
   $columnHalf2.className = 'column-half';
   //  div.entry-item.title
   const $entryItemTitle = document.createElement('div');
-  $entryItemTitle.className = 'entry-item title';
+  $entryItemTitle.className = 'entry-item title hbar';
   //  h3
   const $h3 = document.createElement('h3');
   $h3.textContent = entry.title;
+  //  i
+  const $aPen = document.createElement('a');
+  $aPen.className = 'fa-solid fa-pen';
   //  div.entry-item.notes
   const $entryItemNotes = document.createElement('div');
   $entryItemNotes.className = 'entry-item notes';
@@ -109,6 +113,7 @@ function renderEntry(entry: Entry): HTMLLIElement {
   $entryItemImage.appendChild($img);
   $columnHalf1.appendChild($entryItemImage);
   $entryItemTitle.appendChild($h3);
+  $entryItemTitle.appendChild($aPen);
   $columnHalf2.appendChild($entryItemTitle);
   $entryItemNotes.appendChild($p);
   $columnHalf2.appendChild($entryItemNotes);
