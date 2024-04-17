@@ -125,7 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
     $ul.appendChild(renderEntry(data.entries[i]));
     i++;
   }
-  if ($liEmpty.className === 'empty') {
+  const $liEntry = document.querySelector('li.entry') as HTMLLIElement;
+  if ($liEmpty.className === 'empty' && $liEntry) {
     toggleNoEntries();
   }
   viewSwap(data.view);
