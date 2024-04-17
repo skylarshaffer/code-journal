@@ -73,6 +73,19 @@ button {
   justify-content: center;
 }
 
+/* entries */
+div[data-view='entries'] {
+  width: 100%;
+}
+
+.entry {
+  margin-bottom: 2rem;
+}
+
+li.empty p {
+  text-align: center;
+}
+
 /* items */
 .form-item,
 .entry-item {
@@ -88,10 +101,6 @@ button {
   border-radius: 0.25rem;
   height: 245px;
   object-fit: cover;
-}
-
-.entry {
-  margin-bottom: 2rem;
 }
 
 @media screen and (width >= 768px) {
