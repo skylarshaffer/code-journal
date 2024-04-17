@@ -10,9 +10,10 @@ interface FormElements extends HTMLFormControlsCollection {
 const $photoUrl = document.querySelector('#photoUrl') as HTMLInputElement;
 const $formImg = document.querySelector('#formImg') as HTMLImageElement;
 const $form = document.querySelector('form') as HTMLFormElement;
+const $ul = document.querySelector('ul');
 
 //  error coverage
-if (!$photoUrl || !$formImg || !$form)
+if (!$photoUrl || !$formImg || !$form || !$ul)
   throw new Error('One of the dom queries failed');
 
 //  $photoUrl handleInput
@@ -92,13 +93,10 @@ function renderEntry(entry: Entry): HTMLLIElement {
   return $li;
 }
 
-console.log(renderEntry(data.entries[1]));
-
-const $ul = document.querySelector('ul');
-if (!$ul) throw new Error('The $ul query failed');
-
-let i = 0;
-while (i < data.entries.length) {
-  $ul.appendChild(renderEntry(data.entries[i]));
-  i++;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  let i = 0;
+  while (i < data.entries.length) {
+    $ul.appendChild(renderEntry(data.entries[i]));
+    i++;
+  }
+});

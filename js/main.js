@@ -3,8 +3,9 @@
 const $photoUrl = document.querySelector('#photoUrl');
 const $formImg = document.querySelector('#formImg');
 const $form = document.querySelector('form');
+const $ul = document.querySelector('ul');
 //  error coverage
-if (!$photoUrl || !$formImg || !$form)
+if (!$photoUrl || !$formImg || !$form || !$ul)
   throw new Error('One of the dom queries failed');
 //  $photoUrl handleInput
 $photoUrl.addEventListener('input', (event) => {
@@ -80,11 +81,10 @@ function renderEntry(entry) {
   $li.appendChild($row);
   return $li;
 }
-console.log(renderEntry(data.entries[1]));
-const $ul = document.querySelector('ul');
-if (!$ul) throw new Error('The $ul query failed');
-let i = 0;
-while (i < data.entries.length) {
-  $ul.appendChild(renderEntry(data.entries[i]));
-  i++;
-}
+document.addEventListener('DOMContentLoaded', () => {
+  let i = 0;
+  while (i < data.entries.length) {
+    $ul.appendChild(renderEntry(data.entries[i]));
+    i++;
+  }
+});
