@@ -8,9 +8,10 @@ header {
   color: white;
 }
 
-.navbar {
+.navbar,
+.h2bar {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
 /* headings */
@@ -67,7 +68,8 @@ textarea {
   height: calc(149rem / 16);
 }
 
-button {
+button,
+a.button {
   background-color: #562b81;
   color: white;
   margin-right: 0;

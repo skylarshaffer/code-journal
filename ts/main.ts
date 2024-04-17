@@ -19,6 +19,7 @@ const $divEntryForm = document.querySelector(
   "div[data-view='entry-form']"
 ) as HTMLDivElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
+const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
 
 //  error coverage
 if (
@@ -28,7 +29,9 @@ if (
   !$ul ||
   !$liEmpty ||
   !$divEntries ||
-  !$divEntryForm
+  !$divEntryForm ||
+  !$aEntries ||
+  !$aNEW
 )
   throw new Error('One of the dom queries failed');
 
@@ -149,8 +152,10 @@ function viewSwap(string: string): void {
   data.view = string;
 }
 
-console.log(viewSwap('entries'));
-
 $aEntries.addEventListener('click', () => {
   viewSwap('entries');
+});
+
+$aNEW.addEventListener('click', () => {
+  viewSwap('entry-form');
 });

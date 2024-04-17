@@ -8,6 +8,7 @@ const $liEmpty = document.querySelector('li.empty');
 const $divEntries = document.querySelector("div[data-view='entries']");
 const $divEntryForm = document.querySelector("div[data-view='entry-form']");
 const $aEntries = document.querySelector('.navbar a');
+const $aNEW = document.querySelector('a.button');
 //  error coverage
 if (
   !$photoUrl ||
@@ -16,7 +17,9 @@ if (
   !$ul ||
   !$liEmpty ||
   !$divEntries ||
-  !$divEntryForm
+  !$divEntryForm ||
+  !$aEntries ||
+  !$aNEW
 )
   throw new Error('One of the dom queries failed');
 //  $photoUrl handleInput
@@ -127,7 +130,9 @@ function viewSwap(string) {
   }
   data.view = string;
 }
-console.log(viewSwap('entries'));
 $aEntries.addEventListener('click', () => {
   viewSwap('entries');
+});
+$aNEW.addEventListener('click', () => {
+  viewSwap('entry-form');
 });
