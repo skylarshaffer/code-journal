@@ -47,7 +47,17 @@ $form.addEventListener('submit', (event) => {
   data.entries.unshift(formSubmission);
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+  $ul.prepend(renderEntry(formSubmission));
+  if ($liEmpty.className === 'empty') {
+    toggleNoEntries();
+  }
+  viewSwap('entries');
 });
+/* Update the submit callback for the form to do the following:
+ Render a DOM tree for the newly submitted entry object using the renderEntry function.
+ Prepends the new DOM tree to the unordered list.
+ Use the viewSwap to show the ”entries” view.
+ conditionally uses the toggleNoEntries function as needed to remove the no entries text. */
 function renderEntry(entry) {
   //  li
   const $li = document.createElement('li');
@@ -103,8 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
     i++;
   }
 });
-//  Delete if allowed
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function toggleNoEntries() {
   if ($liEmpty.className === 'empty hidden') {
     $liEmpty.setAttribute('class', 'empty');
@@ -112,14 +120,6 @@ function toggleNoEntries() {
     $liEmpty.setAttribute('class', 'empty hidden');
   }
 }
-//  Alternatives I'm using for now
-function showNoEntries() {
-  $liEmpty.setAttribute('class', 'empty');
-}
-function hideNoEntries() {
-  $liEmpty.setAttribute('class', 'empty hidden');
-}
-console.log(showNoEntries(), hideNoEntries());
 function viewSwap(string) {
   if (string === 'entries') {
     $divEntries.className = '';
