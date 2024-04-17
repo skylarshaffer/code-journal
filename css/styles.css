@@ -116,6 +116,7 @@ li.empty p {
   object-fit: cover;
 }
 
+/* desktop responsive */
 @media screen and (width >= 768px) {
   .container {
     padding: 0 5.1875rem;

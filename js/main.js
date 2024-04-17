@@ -53,11 +53,7 @@ $form.addEventListener('submit', (event) => {
   }
   viewSwap('entries');
 });
-/* Update the submit callback for the form to do the following:
- Render a DOM tree for the newly submitted entry object using the renderEntry function.
- Prepends the new DOM tree to the unordered list.
- Use the viewSwap to show the ”entries” view.
- conditionally uses the toggleNoEntries function as needed to remove the no entries text. */
+//  render HTML element for entry
 function renderEntry(entry) {
   //  li
   const $li = document.createElement('li');
@@ -94,7 +90,7 @@ function renderEntry(entry) {
   //  p
   const $p = document.createElement('p');
   $p.textContent = entry.notes;
-  //  Generate DOM
+  //  generate DOM
   $entryItemImage.appendChild($img);
   $columnHalf1.appendChild($entryItemImage);
   $entryItemTitle.appendChild($h3);
@@ -106,13 +102,19 @@ function renderEntry(entry) {
   $li.appendChild($row);
   return $li;
 }
+//  document handleDOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   let i = 0;
   while (i < data.entries.length) {
     $ul.appendChild(renderEntry(data.entries[i]));
     i++;
   }
+  if ($liEmpty.className === 'empty') {
+    toggleNoEntries();
+  }
+  viewSwap(data.view);
 });
+//  toggle $li placeholder visibility
 function toggleNoEntries() {
   if ($liEmpty.className === 'empty hidden') {
     $liEmpty.setAttribute('class', 'empty');
@@ -120,6 +122,7 @@ function toggleNoEntries() {
     $liEmpty.setAttribute('class', 'empty hidden');
   }
 }
+//  swap views based on string input
 function viewSwap(string) {
   if (string === 'entries') {
     $divEntries.className = '';
@@ -130,6 +133,7 @@ function viewSwap(string) {
   }
   data.view = string;
 }
+//  swap views based on clicked anchor
 $aEntries.addEventListener('click', () => {
   viewSwap('entries');
 });
