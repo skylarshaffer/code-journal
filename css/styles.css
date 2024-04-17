@@ -86,6 +86,11 @@ a.button {
   justify-content: center;
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
 /* entries */
 div[data-view='entries'] {
   width: 100%;
