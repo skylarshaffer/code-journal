@@ -72,16 +72,16 @@ $form.addEventListener('submit', (event: Event) => {
 function renderEntry(entry: Entry): HTMLLIElement {
   //  li
   const $li = document.createElement('li');
-  $li.setAttribute('class', 'entry');
+  $li.className = 'entry';
   //  div.row
   const $row = document.createElement('div');
-  $row.setAttribute('class', 'row');
+  $row.className = 'row';
   //  div.column-half 1
   const $columnHalf1 = document.createElement('div');
-  $columnHalf1.setAttribute('class', 'column-half');
+  $columnHalf1.className = 'column-half';
   //  div.entry-item.image
   const $entryItemImage = document.createElement('div');
-  $entryItemImage.setAttribute('class', 'entry-item image');
+  $entryItemImage.className = 'entry-item image';
   //  img
   const $img = document.createElement('img');
   $img.setAttribute('src', entry.photoUrl);
@@ -92,16 +92,16 @@ function renderEntry(entry: Entry): HTMLLIElement {
   );
   //  div.column-half 2
   const $columnHalf2 = document.createElement('div');
-  $columnHalf2.setAttribute('class', 'column-half');
+  $columnHalf2.className = 'column-half';
   //  div.entry-item.title
   const $entryItemTitle = document.createElement('div');
-  $entryItemTitle.setAttribute('class', 'entry-item title');
+  $entryItemTitle.className = 'entry-item title';
   //  h3
   const $h3 = document.createElement('h3');
   $h3.textContent = entry.title;
   //  div.entry-item.notes
   const $entryItemNotes = document.createElement('div');
-  $entryItemNotes.setAttribute('class', 'entry-item notes');
+  $entryItemNotes.className = 'entry-item notes';
   //  p
   const $p = document.createElement('p');
   $p.textContent = entry.notes;
@@ -135,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
 //  toggle $li placeholder visibility
 function toggleNoEntries(): void {
   if ($liEmpty.className === 'empty hidden') {
-    $liEmpty.setAttribute('class', 'empty');
+    $liEmpty.className = 'empty';
   } else if ($liEmpty.className === 'empty') {
-    $liEmpty.setAttribute('class', 'empty hidden');
+    $liEmpty.className = 'empty hidden';
   }
 }
 
