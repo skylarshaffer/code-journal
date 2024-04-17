@@ -230,5 +230,12 @@ $aEntries.addEventListener('click', () => {
 
 //  $aNEW handleClick
 $aNEW.addEventListener('click', () => {
+  if ($photoUrl.value) $photoUrl.value = '';
+  if ($title.value) $title.value = '';
+  if ($notes.value) $notes.value = '';
+  if ($formImg.src !== 'images/placeholder-image-square.jpg')
+    $formImg.src = 'images/placeholder-image-square.jpg';
+  $formHeading.textContent = 'New Entry';
+  data.editing = null;
   viewSwap('entry-form');
 });
