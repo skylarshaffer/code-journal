@@ -10,6 +10,7 @@ const $liEmpty = document.querySelector('li.empty');
 const $aEntries = document.querySelector('.navbar a');
 const $aNEW = document.querySelector('a.button');
 const $formHeading = document.querySelector('form h2');
+const $deleteEntry = document.querySelector('#delete-entry');
 const $divEntries = document.querySelector("div[data-view='entries']");
 const $divEntryForm = document.querySelector("div[data-view='entry-form']");
 //  error coverage
@@ -23,6 +24,7 @@ if (
   !$liEmpty ||
   !$aEntries ||
   !$aNEW ||
+  !$deleteEntry ||
   !$divEntries ||
   !$divEntryForm
 )
@@ -78,8 +80,9 @@ $form.addEventListener('submit', (event) => {
     );
     //  replace corresponding li in list with rendered DOM
     $ul.replaceChild(renderEntry(formSubmission), $liReplace);
-    //  reset form title and data.editing
+    //  reset form title and data.editing, hide delete entry
     $formHeading.textContent = 'New Entry';
+    $deleteEntry.className = 'hidden';
     data.editing = null;
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -113,6 +116,7 @@ $ul.addEventListener('click', (event) => {
       }
     }
     $formHeading.textContent = 'Edit Entry';
+    $deleteEntry.className = '';
     viewSwap('entry-form');
   }
 });
@@ -215,6 +219,7 @@ $aNEW.addEventListener('click', () => {
   if ($formImg.src !== 'images/placeholder-image-square.jpg')
     $formImg.src = 'images/placeholder-image-square.jpg';
   $formHeading.textContent = 'New Entry';
+  $deleteEntry.className = 'hidden';
   data.editing = null;
   viewSwap('entry-form');
 });

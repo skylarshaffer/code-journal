@@ -17,6 +17,9 @@ const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
 const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
 const $formHeading = document.querySelector('form h2') as HTMLHeadingElement;
+const $deleteEntry = document.querySelector(
+  '#delete-entry'
+) as HTMLAnchorElement;
 const $divEntries = document.querySelector(
   "div[data-view='entries']"
 ) as HTMLDivElement;
@@ -35,6 +38,7 @@ if (
   !$liEmpty ||
   !$aEntries ||
   !$aNEW ||
+  !$deleteEntry ||
   !$divEntries ||
   !$divEntryForm
 )
@@ -92,8 +96,9 @@ $form.addEventListener('submit', (event: Event) => {
     ) as HTMLLIElement;
     //  replace corresponding li in list with rendered DOM
     $ul.replaceChild(renderEntry(formSubmission), $liReplace);
-    //  reset form title and data.editing
+    //  reset form title and data.editing, hide delete entry
     $formHeading.textContent = 'New Entry';
+    $deleteEntry.className = 'hidden';
     data.editing = null;
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -128,6 +133,7 @@ $ul.addEventListener('click', (event: Event) => {
       }
     }
     $formHeading.textContent = 'Edit Entry';
+    $deleteEntry.className = '';
     viewSwap('entry-form');
   }
 });
@@ -236,6 +242,7 @@ $aNEW.addEventListener('click', () => {
   if ($formImg.src !== 'images/placeholder-image-square.jpg')
     $formImg.src = 'images/placeholder-image-square.jpg';
   $formHeading.textContent = 'New Entry';
+  $deleteEntry.className = 'hidden';
   data.editing = null;
   viewSwap('entry-form');
 });

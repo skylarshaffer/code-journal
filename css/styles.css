@@ -134,6 +134,12 @@ div[data-view='entries'] {
   width: 100%;
 }
 
+#delete-entry {
+  color: red;
+  font-size: calc(7rem / 8);
+  text-decoration: underline;
+}
+
 /* desktop responsive */
 @media screen and (width >= 768px) {
   .container {
