@@ -1,4 +1,8 @@
 /* adjustable settings */
+::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 body {
   /* scrollbar shift hotfix */
   width: 100vw;
@@ -17,6 +21,22 @@ a.button {
 .fa-pen {
   color: #562b81;
   font-size: 1.5rem;
+}
+
+#delete-entry {
+  color: #dc2626;
+  font-size: calc(7rem / 8);
+  text-decoration: underline;
+}
+
+#cancel {
+  margin-left: 0;
+  margin-right: auto;
+  background-color: #b6b6b6;
+}
+
+#confirm {
+  background-color: #dc2626;
 }
 
 /* text */
@@ -85,6 +105,7 @@ button,
 .fa-pen {
   margin-right: 0;
   margin-left: auto;
+  text-transform: uppercase;
 }
 
 a,
@@ -101,9 +122,20 @@ button {
   border: 0;
   border-radius: 0.25rem;
   height: 2rem;
-  width: 4.5rem;
+  min-width: 4.5rem;
   align-items: center;
   justify-content: center;
+}
+
+dialog {
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+dialog p {
+  font-size: calc(7rem / 8);
+  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
 /* items */
@@ -127,6 +159,11 @@ button {
 
 li.empty p {
   text-align: center;
+}
+
+ul,
+div[data-view='entries'] {
+  width: 100%;
 }
 
 /* desktop responsive */

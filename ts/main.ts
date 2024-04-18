@@ -17,6 +17,12 @@ const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
 const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
 const $formHeading = document.querySelector('form h2') as HTMLHeadingElement;
+const $dialog = document.querySelector('dialog');
+const $deleteEntry = document.querySelector(
+  '#delete-entry'
+) as HTMLAnchorElement;
+const $cancel = document.querySelector('#cancel') as HTMLAnchorElement;
+const $confirm = document.querySelector('#confirm') as HTMLAnchorElement;
 const $divEntries = document.querySelector(
   "div[data-view='entries']"
 ) as HTMLDivElement;
@@ -35,6 +41,12 @@ if (
   !$liEmpty ||
   !$aEntries ||
   !$aNEW ||
+  !$formHeading ||
+  !$dialog ||
+  !$aNEW ||
+  !$deleteEntry ||
+  !$cancel ||
+  !$confirm ||
   !$divEntries ||
   !$divEntryForm
 )
@@ -92,8 +104,9 @@ $form.addEventListener('submit', (event: Event) => {
     ) as HTMLLIElement;
     //  replace corresponding li in list with rendered DOM
     $ul.replaceChild(renderEntry(formSubmission), $liReplace);
-    //  reset form title and data.editing
+    //  reset form title and data.editing, hide delete entry
     $formHeading.textContent = 'New Entry';
+    $deleteEntry.className = 'hidden';
     data.editing = null;
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -128,6 +141,7 @@ $ul.addEventListener('click', (event: Event) => {
       }
     }
     $formHeading.textContent = 'Edit Entry';
+    $deleteEntry.className = '';
     viewSwap('entry-form');
   }
 });
@@ -236,6 +250,45 @@ $aNEW.addEventListener('click', () => {
   if ($formImg.src !== 'images/placeholder-image-square.jpg')
     $formImg.src = 'images/placeholder-image-square.jpg';
   $formHeading.textContent = 'New Entry';
+  $deleteEntry.className = 'hidden';
   data.editing = null;
   viewSwap('entry-form');
+});
+
+//  $deleteEntry handleClick
+$deleteEntry.addEventListener('click', () => {
+  $dialog.showModal();
+});
+
+//  $cancel handleClick
+$cancel.addEventListener('click', () => {
+  $dialog.close();
+});
+
+//  $confirm handleClick
+$confirm.addEventListener('click', () => {
+  if (data.editing) {
+    //  loop through data.entries and delete first object with matching entryId
+    let i = 0;
+    while (i < data.entries.length) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries.splice(i, 1);
+        break;
+      }
+      i++;
+    }
+    //  remove li with matching data-entry-id attribute
+    $ul
+      .querySelector(`li.entry[data-entry-id="${data.editing.entryId}"]`)
+      ?.remove();
+  }
+  // if $li placeholder is not visible and there are no li entries, toggle li
+  if (
+    $liEmpty.className === 'empty hidden' &&
+    !document.querySelector('li.entry')
+  ) {
+    toggleNoEntries();
+  }
+  $dialog.close();
+  viewSwap('entries');
 });
