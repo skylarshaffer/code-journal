@@ -93,7 +93,7 @@ $form.addEventListener('submit', (event) => {
     $ul.replaceChild(renderEntry(formSubmission), $liReplace);
     //  reset form title and data.editing, hide delete entry
     $formHeading.textContent = 'New Entry';
-    $deleteEntry.className = 'hidden';
+    $deleteEntry.classList.add('hidden');
     data.editing = null;
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -104,7 +104,7 @@ $form.addEventListener('submit', (event) => {
 //  $ul handleClick
 $ul.addEventListener('click', (event) => {
   const eventTarget = event.target;
-  if (eventTarget.className.includes('fa-pen')) {
+  if (eventTarget.classList.contains('fa-pen')) {
     const $selectedLi = eventTarget.closest('li');
     if ($selectedLi) {
       let i = 0;
@@ -125,7 +125,7 @@ $ul.addEventListener('click', (event) => {
       }
     }
     $formHeading.textContent = 'Edit Entry';
-    $deleteEntry.className = '';
+    $deleteEntry.classList.remove('hidden');
     viewSwap('entry-form');
   }
 });
@@ -213,11 +213,11 @@ function checkNoEntries() {
 //  swap views based on string input
 function viewSwap(string) {
   if (string === 'entries') {
-    $divEntries.className = '';
-    $divEntryForm.className = 'hidden';
+    $divEntries.classList.remove('hidden');
+    $divEntryForm.classList.add('hidden');
   } else if (string === 'entry-form') {
-    $divEntries.className = 'hidden';
-    $divEntryForm.className = '';
+    $divEntries.classList.add('hidden');
+    $divEntryForm.classList.remove('hidden');
   }
   data.view = string;
 }
@@ -234,7 +234,7 @@ $aNEW.addEventListener('click', () => {
   if ($formImg.src !== 'images/placeholder-image-square.jpg')
     $formImg.src = 'images/placeholder-image-square.jpg';
   $formHeading.textContent = 'New Entry';
-  $deleteEntry.className = 'hidden';
+  $deleteEntry.classList.add('hidden');
   data.editing = null;
   viewSwap('entry-form');
 });
