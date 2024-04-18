@@ -6,7 +6,7 @@ interface FormElements extends HTMLFormControlsCollection {
   notes: HTMLTextAreaElement;
 }
 
-//  DOM queries
+//  global DOM queries
 const $form = document.querySelector('form') as HTMLFormElement;
 const $photoUrl = $form.querySelector('#photoUrl') as HTMLInputElement;
 const $title = $form.querySelector('#title') as HTMLInputElement;
@@ -17,7 +17,7 @@ const $ul = document.querySelector('ul') as HTMLUListElement;
 const $liEmpty = $ul.querySelector('li.empty') as HTMLLIElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
 const $aNEW = document.querySelector('#new') as HTMLAnchorElement;
-const $dialog = document.querySelector('dialog');
+const $dialog = document.querySelector('dialog') as HTMLDialogElement;
 const $cancel = document.querySelector('#cancel') as HTMLAnchorElement;
 const $confirm = document.querySelector('#confirm') as HTMLAnchorElement;
 const $deleteEntry = document.querySelector(
@@ -30,27 +30,30 @@ const $divEntryForm = document.querySelector(
   'div[data-view="entry-form"]'
 ) as HTMLDivElement;
 
-//  error coverage
-if (
-  !$photoUrl ||
-  !$title ||
-  !$notes ||
-  !$formImg ||
-  !$form ||
-  !$ul ||
-  !$liEmpty ||
-  !$aEntries ||
-  !$aNEW ||
-  !$formHeading ||
-  !$dialog ||
-  !$aNEW ||
-  !$deleteEntry ||
-  !$cancel ||
-  !$confirm ||
-  !$divEntries ||
-  !$divEntryForm
-)
-  throw new Error('One of the dom queries failed');
+//  global dom queries object
+const domQueries: Record<string, any> = {
+  form: $form,
+  photoUrl: $photoUrl,
+  title: $title,
+  notes: $notes,
+  formImg: $formImg,
+  formHeading: $formHeading,
+  ul: $ul,
+  liEmpty: $liEmpty,
+  aEntries: $aEntries,
+  aNEW: $aNEW,
+  dialog: $dialog,
+  cancel: $cancel,
+  confirm: $confirm,
+  deleteEntry: $deleteEntry,
+  divEntries: $divEntries,
+  divEntryForm: $divEntryForm,
+};
+
+//  global dom queries error checking with specific reporting
+for (const key in domQueries) {
+  if (!domQueries[key]) throw new Error(`The ${key} dom query failed`);
+}
 
 //  $photoUrl handleInput
 $photoUrl.addEventListener('input', (event: Event) => {
@@ -285,7 +288,7 @@ $confirm.addEventListener('click', () => {
   // if $li placeholder is not visible and there are no li entries, toggle li
   if (
     $liEmpty.className === 'empty hidden' &&
-    !document.querySelector('li.entry')
+    document.querySelector('li.entry')
   ) {
     toggleNoEntries();
   }

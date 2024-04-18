@@ -1,5 +1,5 @@
 'use strict';
-//  DOM queries
+//  global DOM queries
 const $form = document.querySelector('form');
 const $photoUrl = $form.querySelector('#photoUrl');
 const $title = $form.querySelector('#title');
@@ -16,27 +16,29 @@ const $confirm = document.querySelector('#confirm');
 const $deleteEntry = document.querySelector('#delete-entry');
 const $divEntries = document.querySelector('div[data-view="entries"]');
 const $divEntryForm = document.querySelector('div[data-view="entry-form"]');
-//  error coverage
-if (
-  !$photoUrl ||
-  !$title ||
-  !$notes ||
-  !$formImg ||
-  !$form ||
-  !$ul ||
-  !$liEmpty ||
-  !$aEntries ||
-  !$aNEW ||
-  !$formHeading ||
-  !$dialog ||
-  !$aNEW ||
-  !$deleteEntry ||
-  !$cancel ||
-  !$confirm ||
-  !$divEntries ||
-  !$divEntryForm
-)
-  throw new Error('One of the dom queries failed');
+//  global dom queries object
+const domQueries = {
+  form: $form,
+  photoUrl: $photoUrl,
+  title: $title,
+  notes: $notes,
+  formImg: $formImg,
+  formHeading: $formHeading,
+  ul: $ul,
+  liEmpty: $liEmpty,
+  aEntries: $aEntries,
+  aNEW: $aNEW,
+  dialog: $dialog,
+  cancel: $cancel,
+  confirm: $confirm,
+  deleteEntry: $deleteEntry,
+  divEntries: $divEntries,
+  divEntryForm: $divEntryForm,
+};
+//  global dom queries error checking with specific reporting
+for (const key in domQueries) {
+  if (!domQueries[key]) throw new Error(`The ${key} dom query failed`);
+}
 //  $photoUrl handleInput
 $photoUrl.addEventListener('input', (event) => {
   const eventTarget = event.target;
@@ -259,7 +261,7 @@ $confirm.addEventListener('click', () => {
   // if $li placeholder is not visible and there are no li entries, toggle li
   if (
     $liEmpty.className === 'empty hidden' &&
-    !document.querySelector('li.entry')
+    document.querySelector('li.entry')
   ) {
     toggleNoEntries();
   }
