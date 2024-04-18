@@ -10,7 +10,10 @@ const $liEmpty = document.querySelector('li.empty');
 const $aEntries = document.querySelector('.navbar a');
 const $aNEW = document.querySelector('a.button');
 const $formHeading = document.querySelector('form h2');
+const $dialog = document.querySelector('dialog');
 const $deleteEntry = document.querySelector('#delete-entry');
+const $cancel = document.querySelector('#cancel');
+const $confirm = document.querySelector('#confirm');
 const $divEntries = document.querySelector("div[data-view='entries']");
 const $divEntryForm = document.querySelector("div[data-view='entry-form']");
 //  error coverage
@@ -24,7 +27,12 @@ if (
   !$liEmpty ||
   !$aEntries ||
   !$aNEW ||
+  !$formHeading ||
+  !$dialog ||
+  !$aNEW ||
   !$deleteEntry ||
+  !$cancel ||
+  !$confirm ||
   !$divEntries ||
   !$divEntryForm
 )
@@ -222,4 +230,16 @@ $aNEW.addEventListener('click', () => {
   $deleteEntry.className = 'hidden';
   data.editing = null;
   viewSwap('entry-form');
+});
+//  $deleteEntry handleClick
+$deleteEntry.addEventListener('click', () => {
+  $dialog.showModal();
+});
+//  $cancel handleClick
+$cancel.addEventListener('click', () => {
+  $dialog.close();
+});
+//  $confirm handleClick
+$confirm.addEventListener('click', () => {
+  $dialog.close();
 });

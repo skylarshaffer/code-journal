@@ -17,9 +17,12 @@ const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
 const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
 const $formHeading = document.querySelector('form h2') as HTMLHeadingElement;
+const $dialog = document.querySelector('dialog');
 const $deleteEntry = document.querySelector(
   '#delete-entry'
 ) as HTMLAnchorElement;
+const $cancel = document.querySelector('#cancel') as HTMLAnchorElement;
+const $confirm = document.querySelector('#confirm') as HTMLAnchorElement;
 const $divEntries = document.querySelector(
   "div[data-view='entries']"
 ) as HTMLDivElement;
@@ -38,7 +41,12 @@ if (
   !$liEmpty ||
   !$aEntries ||
   !$aNEW ||
+  !$formHeading ||
+  !$dialog ||
+  !$aNEW ||
   !$deleteEntry ||
+  !$cancel ||
+  !$confirm ||
   !$divEntries ||
   !$divEntryForm
 )
@@ -245,4 +253,19 @@ $aNEW.addEventListener('click', () => {
   $deleteEntry.className = 'hidden';
   data.editing = null;
   viewSwap('entry-form');
+});
+
+//  $deleteEntry handleClick
+$deleteEntry.addEventListener('click', () => {
+  $dialog.showModal();
+});
+
+//  $cancel handleClick
+$cancel.addEventListener('click', () => {
+  $dialog.close();
+});
+
+//  $confirm handleClick
+$confirm.addEventListener('click', () => {
+  $dialog.close();
 });
