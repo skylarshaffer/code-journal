@@ -1,5 +1,6 @@
 'use strict';
 //  global DOM queries
+//  variable definition
 const $form = document.querySelector('form');
 const $photoUrl = $form.querySelector('#photoUrl');
 const $title = $form.querySelector('#title');
@@ -97,9 +98,7 @@ $form.addEventListener('submit', (event) => {
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  if ($liEmpty.className === 'empty') {
-    toggleNoEntries();
-  }
+  checkNoEntries();
   viewSwap('entries');
 });
 //  $ul handleClick
@@ -191,19 +190,22 @@ document.addEventListener('DOMContentLoaded', () => {
     $ul.appendChild(renderEntry(data.entries[i]));
     i++;
   }
-  const $liEntry = document.querySelector('li.entry');
-  if ($liEmpty.className === 'empty' && $liEntry) {
-    toggleNoEntries();
-  }
+  checkNoEntries();
   viewSwap(data.view);
 });
 //  toggle $li placeholder visibility
-function toggleNoEntries() {
-  if ($liEmpty.className === 'empty hidden') {
+function checkNoEntries() {
+  if (
+    $liEmpty.className === 'empty hidden' &&
+    !document.querySelector('li.entry')
+  ) {
     $liEmpty.className = 'empty';
-  } else if ($liEmpty.className === 'empty') {
+  } else if (
+    $liEmpty.className === 'empty' &&
+    document.querySelector('li.entry')
+  ) {
     $liEmpty.className = 'empty hidden';
-  }
+  } else throw new Error();
 }
 //  swap views based on string input
 function viewSwap(string) {
@@ -259,12 +261,7 @@ $confirm.addEventListener('click', () => {
       ?.remove();
   }
   // if $li placeholder is not visible and there are no li entries, toggle li
-  if (
-    $liEmpty.className === 'empty hidden' &&
-    document.querySelector('li.entry')
-  ) {
-    toggleNoEntries();
-  }
+  checkNoEntries();
   $dialog.close();
   viewSwap('entries');
 });

@@ -7,6 +7,7 @@ interface FormElements extends HTMLFormControlsCollection {
 }
 
 //  global DOM queries
+//  variable definition
 const $form = document.querySelector('form') as HTMLFormElement;
 const $photoUrl = $form.querySelector('#photoUrl') as HTMLInputElement;
 const $title = $form.querySelector('#title') as HTMLInputElement;
@@ -114,9 +115,7 @@ $form.addEventListener('submit', (event: Event) => {
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  if ($liEmpty.className === 'empty') {
-    toggleNoEntries();
-  }
+  checkNoEntries();
   viewSwap('entries');
 });
 
@@ -211,20 +210,23 @@ document.addEventListener('DOMContentLoaded', () => {
     $ul.appendChild(renderEntry(data.entries[i]));
     i++;
   }
-  const $liEntry = document.querySelector('li.entry') as HTMLLIElement;
-  if ($liEmpty.className === 'empty' && $liEntry) {
-    toggleNoEntries();
-  }
+  checkNoEntries();
   viewSwap(data.view);
 });
 
 //  toggle $li placeholder visibility
-function toggleNoEntries(): void {
-  if ($liEmpty.className === 'empty hidden') {
+function checkNoEntries(): void {
+  if (
+    $liEmpty.className === 'empty hidden' &&
+    !document.querySelector('li.entry')
+  ) {
     $liEmpty.className = 'empty';
-  } else if ($liEmpty.className === 'empty') {
+  } else if (
+    $liEmpty.className === 'empty' &&
+    document.querySelector('li.entry')
+  ) {
     $liEmpty.className = 'empty hidden';
-  }
+  } else throw new Error();
 }
 
 //  swap views based on string input
@@ -286,12 +288,7 @@ $confirm.addEventListener('click', () => {
       ?.remove();
   }
   // if $li placeholder is not visible and there are no li entries, toggle li
-  if (
-    $liEmpty.className === 'empty hidden' &&
-    document.querySelector('li.entry')
-  ) {
-    toggleNoEntries();
-  }
+  checkNoEntries();
   $dialog.close();
   viewSwap('entries');
 });
