@@ -267,5 +267,28 @@ $cancel.addEventListener('click', () => {
 
 //  $confirm handleClick
 $confirm.addEventListener('click', () => {
+  if (data.editing) {
+    //  loop through data.entries and delete first object with matching entryId
+    let i = 0;
+    while (i < data.entries.length) {
+      if (data.entries[i].entryId === data.editing.entryId) {
+        data.entries.splice(i, 1);
+        break;
+      }
+      i++;
+    }
+    //  remove li with matching data-entry-id attribute
+    $ul
+      .querySelector(`li.entry[data-entry-id="${data.editing.entryId}"]`)
+      ?.remove();
+  }
+  // if $li placeholder is not visible and there are no li entries, toggle li
+  if (
+    $liEmpty.className === 'empty hidden' &&
+    !document.querySelector('li.entry')
+  ) {
+    toggleNoEntries();
+  }
   $dialog.close();
+  viewSwap('entries');
 });
