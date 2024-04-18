@@ -193,19 +193,22 @@ document.addEventListener('DOMContentLoaded', () => {
   checkNoEntries();
   viewSwap(data.view);
 });
-//  toggle $li placeholder visibility
+//  check for entries state error, intelligently toggle no entries message
 function checkNoEntries() {
   if (
-    $liEmpty.className === 'empty hidden' &&
-    !document.querySelector('li.entry')
+    !(
+      (document.querySelector('li.entry') &&
+        $liEmpty.classList.contains('hidden')) ||
+      (!document.querySelector('li.entry') &&
+        !$liEmpty.classList.contains('hidden'))
+    )
   ) {
-    $liEmpty.className = 'empty';
-  } else if (
-    $liEmpty.className === 'empty' &&
-    document.querySelector('li.entry')
-  ) {
-    $liEmpty.className = 'empty hidden';
-  } else throw new Error();
+    if (!document.querySelector('li.entry')) {
+      $liEmpty.classList.remove('hidden');
+    } else if (document.querySelector('li.entry')) {
+      $liEmpty.classList.add('hidden');
+    } else throw new Error();
+  }
 }
 //  swap views based on string input
 function viewSwap(string) {
