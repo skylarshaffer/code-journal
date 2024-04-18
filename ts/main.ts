@@ -8,26 +8,26 @@ interface FormElements extends HTMLFormControlsCollection {
 
 //  DOM queries
 const $form = document.querySelector('form') as HTMLFormElement;
-const $photoUrl = document.querySelector('#photoUrl') as HTMLInputElement;
-const $title = document.querySelector('#title') as HTMLInputElement;
-const $notes = document.querySelector('#notes') as HTMLTextAreaElement;
-const $formImg = document.querySelector('#formImg') as HTMLImageElement;
+const $photoUrl = $form.querySelector('#photoUrl') as HTMLInputElement;
+const $title = $form.querySelector('#title') as HTMLInputElement;
+const $notes = $form.querySelector('#notes') as HTMLTextAreaElement;
+const $formImg = $form.querySelector('#formImg') as HTMLImageElement;
+const $formHeading = $form.querySelector('form h2') as HTMLHeadingElement;
 const $ul = document.querySelector('ul') as HTMLUListElement;
-const $liEmpty = document.querySelector('li.empty') as HTMLLIElement;
+const $liEmpty = $ul.querySelector('li.empty') as HTMLLIElement;
 const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
-const $aNEW = document.querySelector('a.button') as HTMLAnchorElement;
-const $formHeading = document.querySelector('form h2') as HTMLHeadingElement;
+const $aNEW = document.querySelector('#new') as HTMLAnchorElement;
 const $dialog = document.querySelector('dialog');
+const $cancel = document.querySelector('#cancel') as HTMLAnchorElement;
+const $confirm = document.querySelector('#confirm') as HTMLAnchorElement;
 const $deleteEntry = document.querySelector(
   '#delete-entry'
 ) as HTMLAnchorElement;
-const $cancel = document.querySelector('#cancel') as HTMLAnchorElement;
-const $confirm = document.querySelector('#confirm') as HTMLAnchorElement;
 const $divEntries = document.querySelector(
-  "div[data-view='entries']"
+  'div[data-view="entries"]'
 ) as HTMLDivElement;
 const $divEntryForm = document.querySelector(
-  "div[data-view='entry-form']"
+  'div[data-view="entry-form"]'
 ) as HTMLDivElement;
 
 //  error coverage

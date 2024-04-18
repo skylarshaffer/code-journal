@@ -1,21 +1,21 @@
 'use strict';
 //  DOM queries
 const $form = document.querySelector('form');
-const $photoUrl = document.querySelector('#photoUrl');
-const $title = document.querySelector('#title');
-const $notes = document.querySelector('#notes');
-const $formImg = document.querySelector('#formImg');
+const $photoUrl = $form.querySelector('#photoUrl');
+const $title = $form.querySelector('#title');
+const $notes = $form.querySelector('#notes');
+const $formImg = $form.querySelector('#formImg');
+const $formHeading = $form.querySelector('form h2');
 const $ul = document.querySelector('ul');
-const $liEmpty = document.querySelector('li.empty');
+const $liEmpty = $ul.querySelector('li.empty');
 const $aEntries = document.querySelector('.navbar a');
-const $aNEW = document.querySelector('a.button');
-const $formHeading = document.querySelector('form h2');
+const $aNEW = document.querySelector('#new');
 const $dialog = document.querySelector('dialog');
-const $deleteEntry = document.querySelector('#delete-entry');
 const $cancel = document.querySelector('#cancel');
 const $confirm = document.querySelector('#confirm');
-const $divEntries = document.querySelector("div[data-view='entries']");
-const $divEntryForm = document.querySelector("div[data-view='entry-form']");
+const $deleteEntry = document.querySelector('#delete-entry');
+const $divEntries = document.querySelector('div[data-view="entries"]');
+const $divEntryForm = document.querySelector('div[data-view="entry-form"]');
 //  error coverage
 if (
   !$photoUrl ||
