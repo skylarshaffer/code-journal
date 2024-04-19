@@ -44,6 +44,14 @@ const domQueries = {
 for (const key in domQueries) {
   if (!domQueries[key]) throw new Error(`The ${key} dom query failed`);
 }
+//  unhide HTML element
+function showHTML(element) {
+  element.classList.remove('hidden');
+}
+//  hide HTML element
+function hideHTML(element) {
+  element.classList.add('hidden');
+}
 //  $photoUrl handleInput
 $photoUrl.addEventListener('input', (event) => {
   const eventTarget = event.target;
@@ -97,7 +105,7 @@ $form.addEventListener('submit', (event) => {
     $ul.replaceChild(renderEntry(formSubmission), $liReplace);
     //  reset form title and data.editing, hide delete entry
     $formHeading.textContent = 'New Entry';
-    $deleteEntry.classList.add('hidden');
+    hideHTML($deleteEntry);
     data.editing = null;
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -129,7 +137,7 @@ $ul.addEventListener('click', (event) => {
       }
     }
     $formHeading.textContent = 'Edit Entry';
-    $deleteEntry.classList.remove('hidden');
+    showHTML($deleteEntry);
     viewSwap('entry-form');
   }
 });
@@ -208,21 +216,22 @@ function checkNoEntries() {
     )
   ) {
     if (!document.querySelector('li.entry')) {
-      $liEmpty.classList.remove('hidden');
+      showHTML($liEmpty);
     } else if (document.querySelector('li.entry')) {
-      $liEmpty.classList.add('hidden');
+      hideHTML($liEmpty);
     } else throw new Error();
   }
 }
 //  swap views based on string input
 function viewSwap(string) {
   if (string === 'entries') {
-    $divEntries.classList.remove('hidden');
-    $divEntryForm.classList.add('hidden');
+    showHTML($divEntries);
+    hideHTML($divEntryForm);
   } else if (string === 'entry-form') {
-    $divEntries.classList.add('hidden');
-    $divEntryForm.classList.remove('hidden');
-  }
+    showHTML($divEntryForm);
+    hideHTML($divEntries);
+  } else
+    throw new Error('Provided string does not match either possible options');
   data.view = string;
 }
 //  swap views based on clicked anchor
@@ -238,7 +247,7 @@ $aNEW.addEventListener('click', () => {
   if ($formImg.src !== 'images/placeholder-image-square.jpg')
     $formImg.src = 'images/placeholder-image-square.jpg';
   $formHeading.textContent = 'New Entry';
-  $deleteEntry.classList.add('hidden');
+  hideHTML($deleteEntry);
   data.editing = null;
   viewSwap('entry-form');
 });
