@@ -152,6 +152,11 @@ dialog p {
   object-fit: cover;
 }
 
+/* functions */
+li.empty:not(:only-child) {
+  display: none;
+}
+
 /* one-offs */
 .navbar a {
   margin: 0 1rem;
