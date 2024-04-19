@@ -8,47 +8,49 @@ interface FormElements extends HTMLFormControlsCollection {
 
 //  global DOM queries
 //  variable definition
-const $form = document.querySelector('form') as HTMLFormElement;
+//  header
+const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
+//  entry-form
+const $divEntryForm = document.querySelector(
+  'div[data-view="entry-form"]'
+) as HTMLDivElement;
+const $form = $divEntryForm.querySelector('form') as HTMLFormElement;
 const $photoUrl = $form.querySelector('#photoUrl') as HTMLInputElement;
 const $title = $form.querySelector('#title') as HTMLInputElement;
 const $notes = $form.querySelector('#notes') as HTMLTextAreaElement;
 const $formImg = $form.querySelector('#formImg') as HTMLImageElement;
 const $formHeading = $form.querySelector('form h2') as HTMLHeadingElement;
-const $ul = document.querySelector('ul') as HTMLUListElement;
-const $liEmpty = $ul.querySelector('li.empty') as HTMLLIElement;
-const $aEntries = document.querySelector('.navbar a') as HTMLAnchorElement;
-const $aNEW = document.querySelector('#new') as HTMLAnchorElement;
-const $dialog = document.querySelector('dialog') as HTMLDialogElement;
-const $cancel = document.querySelector('#cancel') as HTMLAnchorElement;
-const $confirm = document.querySelector('#confirm') as HTMLAnchorElement;
-const $deleteEntry = document.querySelector(
-  '#delete-entry'
-) as HTMLAnchorElement;
+const $deleteEntry = $form.querySelector('#delete-entry') as HTMLAnchorElement;
+//  entries
 const $divEntries = document.querySelector(
   'div[data-view="entries"]'
 ) as HTMLDivElement;
-const $divEntryForm = document.querySelector(
-  'div[data-view="entry-form"]'
-) as HTMLDivElement;
+const $aNEW = $divEntries.querySelector('#new') as HTMLAnchorElement;
+const $ul = $divEntries.querySelector('ul') as HTMLUListElement;
+const $liEmpty = $ul.querySelector('li.empty') as HTMLLIElement;
+//  dialog
+const $dialog = document.querySelector('dialog') as HTMLDialogElement;
+const $cancel = $dialog.querySelector('#cancel') as HTMLAnchorElement;
+const $confirm = $dialog.querySelector('#confirm') as HTMLAnchorElement;
 
 //  global dom queries object
 const domQueries: Record<string, any> = {
-  form: $form,
-  photoUrl: $photoUrl,
-  title: $title,
-  notes: $notes,
-  formImg: $formImg,
-  formHeading: $formHeading,
-  ul: $ul,
-  liEmpty: $liEmpty,
-  aEntries: $aEntries,
-  aNEW: $aNEW,
-  dialog: $dialog,
-  cancel: $cancel,
-  confirm: $confirm,
-  deleteEntry: $deleteEntry,
-  divEntries: $divEntries,
-  divEntryForm: $divEntryForm,
+  $aEntries,
+  $divEntryForm,
+  $form,
+  $photoUrl,
+  $title,
+  $notes,
+  $formImg,
+  $formHeading,
+  $deleteEntry,
+  $divEntries,
+  $aNEW,
+  $ul,
+  $liEmpty,
+  $dialog,
+  $cancel,
+  $confirm,
 };
 
 //  global dom queries error checking with specific reporting

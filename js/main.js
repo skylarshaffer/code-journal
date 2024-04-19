@@ -1,40 +1,44 @@
 'use strict';
 //  global DOM queries
 //  variable definition
-const $form = document.querySelector('form');
+//  header
+const $aEntries = document.querySelector('.navbar a');
+//  entry-form
+const $divEntryForm = document.querySelector('div[data-view="entry-form"]');
+const $form = $divEntryForm.querySelector('form');
 const $photoUrl = $form.querySelector('#photoUrl');
 const $title = $form.querySelector('#title');
 const $notes = $form.querySelector('#notes');
 const $formImg = $form.querySelector('#formImg');
 const $formHeading = $form.querySelector('form h2');
-const $ul = document.querySelector('ul');
-const $liEmpty = $ul.querySelector('li.empty');
-const $aEntries = document.querySelector('.navbar a');
-const $aNEW = document.querySelector('#new');
-const $dialog = document.querySelector('dialog');
-const $cancel = document.querySelector('#cancel');
-const $confirm = document.querySelector('#confirm');
-const $deleteEntry = document.querySelector('#delete-entry');
+const $deleteEntry = $form.querySelector('#delete-entry');
+//  entries
 const $divEntries = document.querySelector('div[data-view="entries"]');
-const $divEntryForm = document.querySelector('div[data-view="entry-form"]');
+const $aNEW = $divEntries.querySelector('#new');
+const $ul = $divEntries.querySelector('ul');
+const $liEmpty = $ul.querySelector('li.empty');
+//  dialog
+const $dialog = document.querySelector('dialog');
+const $cancel = $dialog.querySelector('#cancel');
+const $confirm = $dialog.querySelector('#confirm');
 //  global dom queries object
 const domQueries = {
-  form: $form,
-  photoUrl: $photoUrl,
-  title: $title,
-  notes: $notes,
-  formImg: $formImg,
-  formHeading: $formHeading,
-  ul: $ul,
-  liEmpty: $liEmpty,
-  aEntries: $aEntries,
-  aNEW: $aNEW,
-  dialog: $dialog,
-  cancel: $cancel,
-  confirm: $confirm,
-  deleteEntry: $deleteEntry,
-  divEntries: $divEntries,
-  divEntryForm: $divEntryForm,
+  $aEntries,
+  $divEntryForm,
+  $form,
+  $photoUrl,
+  $title,
+  $notes,
+  $formImg,
+  $formHeading,
+  $deleteEntry,
+  $divEntries,
+  $aNEW,
+  $ul,
+  $liEmpty,
+  $dialog,
+  $cancel,
+  $confirm,
 };
 //  global dom queries error checking with specific reporting
 for (const key in domQueries) {
