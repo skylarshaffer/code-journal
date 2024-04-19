@@ -27,7 +27,6 @@ const $divEntries = document.querySelector(
 ) as HTMLDivElement;
 const $aNEW = $divEntries.querySelector('#new') as HTMLAnchorElement;
 const $ul = $divEntries.querySelector('ul') as HTMLUListElement;
-const $liEmpty = $ul.querySelector('li.empty') as HTMLLIElement;
 //  dialog
 const $dialog = document.querySelector('dialog') as HTMLDialogElement;
 const $cancel = $dialog.querySelector('#cancel') as HTMLAnchorElement;
@@ -47,7 +46,6 @@ const domQueries: Record<string, any> = {
   $divEntries,
   $aNEW,
   $ul,
-  $liEmpty,
   $dialog,
   $cancel,
   $confirm,
@@ -214,24 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
   viewSwap(data.view);
 });
 
-//  check for entries state error, intelligently toggle no entries message
-function checkNoEntries(): void {
-  if (
-    !(
-      (document.querySelector('li.entry') &&
-        $liEmpty.classList.contains('hidden')) ||
-      (!document.querySelector('li.entry') &&
-        !$liEmpty.classList.contains('hidden'))
-    )
-  ) {
-    if (!document.querySelector('li.entry')) {
-      showHTML($liEmpty);
-    } else if (document.querySelector('li.entry')) {
-      hideHTML($liEmpty);
-    } else throw new Error();
-  }
-}
-
 //  swap views based on string input
 function viewSwap(string: string): void {
   if (string === 'entries') {
@@ -243,7 +223,6 @@ function viewSwap(string: string): void {
   } else
     throw new Error('Provided string does not match either possible options');
   data.view = string;
-  checkNoEntries();
 }
 
 //  swap views based on clicked anchor
