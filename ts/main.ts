@@ -121,7 +121,6 @@ $form.addEventListener('submit', (event: Event) => {
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-  checkNoEntries();
   viewSwap('entries');
 });
 
@@ -212,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < data.entries.length; i++) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
-  checkNoEntries();
   viewSwap(data.view);
 });
 
@@ -245,6 +243,7 @@ function viewSwap(string: string): void {
   } else
     throw new Error('Provided string does not match either possible options');
   data.view = string;
+  checkNoEntries();
 }
 
 //  swap views based on clicked anchor
@@ -291,8 +290,6 @@ $confirm.addEventListener('click', () => {
       .querySelector(`li.entry[data-entry-id="${data.editing.entryId}"]`)
       ?.remove();
   }
-  // if $li placeholder is not visible and there are no li entries, toggle li
-  checkNoEntries();
   $dialog.close();
   viewSwap('entries');
 });
