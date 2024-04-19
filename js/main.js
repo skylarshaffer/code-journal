@@ -97,7 +97,7 @@ $form.addEventListener('submit', (event) => {
     $ul.replaceChild(renderEntry(formSubmission), $liReplace);
     //  reset form title and data.editing, hide delete entry
     $formHeading.textContent = 'New Entry';
-    hideHTML($deleteEntry);
+    $form.classList.remove('editing');
     data.editing = null;
   }
   $formImg.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -126,7 +126,7 @@ $ul.addEventListener('click', (event) => {
       }
     }
     $formHeading.textContent = 'Edit Entry';
-    showHTML($deleteEntry);
+    $form.classList.add('editing');
     viewSwap('entry-form');
   }
 });
@@ -216,7 +216,7 @@ $aNEW.addEventListener('click', () => {
   if ($formImg.src !== 'images/placeholder-image-square.jpg')
     $formImg.src = 'images/placeholder-image-square.jpg';
   $formHeading.textContent = 'New Entry';
-  hideHTML($deleteEntry);
+  $form.classList.remove('editing');
   data.editing = null;
   viewSwap('entry-form');
 });

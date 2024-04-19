@@ -157,6 +157,10 @@ li.empty:not(:only-child) {
   display: none;
 }
 
+form:not(.editing) #delete-entry {
+  display: none;
+}
+
 /* one-offs */
 .navbar a {
   margin: 0 1rem;
