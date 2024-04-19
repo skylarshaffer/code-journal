@@ -66,36 +66,30 @@ $photoUrl.addEventListener('input', (event) => {
 //  $form handleSubmit
 $form.addEventListener('submit', (event) => {
   event.preventDefault();
+  const $formElements = $form.elements;
+  const formSubmission = {
+    title: $formElements.title.value,
+    photoUrl: $formElements.photoUrl.value,
+    notes: $formElements.notes.value,
+    //  set entryId to next available
+    entryId: data.nextEntryId,
+  };
+  //  if editing is null
   if (!data.editing) {
-    const $formElements = $form.elements;
-    const formSubmission = {
-      title: $formElements.title.value,
-      photoUrl: $formElements.photoUrl.value,
-      notes: $formElements.notes.value,
-      //  set entryId to next available
-      entryId: data.nextEntryId,
-    };
-    data.nextEntryId++;
     data.entries.unshift(formSubmission);
     //  prepend list with rendered DOM
     $ul.prepend(renderEntry(formSubmission));
+    data.nextEntryId++;
+    //  if currently editing
   } else {
-    const $formElements = $form.elements;
-    const formSubmission = {
-      title: $formElements.title.value,
-      photoUrl: $formElements.photoUrl.value,
-      notes: $formElements.notes.value,
-      //  set entryId to currently editing entryId
-      entryId: data.editing.entryId,
-    };
+    //  replace entryId with current post entryId
+    formSubmission.entryId = data.editing.entryId;
     //  loop through data.entries and replace the object with matching entryId
-    let i = 0;
-    while (i < data.entries.length) {
+    for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === formSubmission.entryId) {
         data.entries[i] = formSubmission;
         break;
       }
-      i++;
     }
     //  select li with matching data-entry-id
     const $liReplace = $ul.querySelector(
@@ -119,15 +113,13 @@ $ul.addEventListener('click', (event) => {
   if (eventTarget.classList.contains('fa-pen')) {
     const $selectedLi = eventTarget.closest('li');
     if ($selectedLi) {
-      let i = 0;
-      while (i < data.entries.length) {
+      for (let i = 0; i < data.entries.length; i++) {
         if (
           data.entries[i].entryId.toString() === $selectedLi.dataset.entryId
         ) {
           data.editing = data.entries[i];
           break;
         }
-        i++;
       }
       if (data.editing) {
         $photoUrl.value = data.editing.photoUrl;
@@ -197,10 +189,8 @@ function renderEntry(entry) {
 }
 //  document handleDOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  let i = 0;
-  while (i < data.entries.length) {
+  for (let i = 0; i < data.entries.length; i++) {
     $ul.appendChild(renderEntry(data.entries[i]));
-    i++;
   }
   checkNoEntries();
   viewSwap(data.view);
@@ -263,13 +253,11 @@ $cancel.addEventListener('click', () => {
 $confirm.addEventListener('click', () => {
   if (data.editing) {
     //  loop through data.entries and delete first object with matching entryId
-    let i = 0;
-    while (i < data.entries.length) {
+    for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === data.editing.entryId) {
         data.entries.splice(i, 1);
         break;
       }
-      i++;
     }
     //  remove li with matching data-entry-id attribute
     $ul
