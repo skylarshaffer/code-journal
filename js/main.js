@@ -14,7 +14,7 @@ const $formHeading = $form.querySelector('form h2');
 const $deleteEntry = $form.querySelector('#delete-entry');
 //  entries
 const $divEntries = document.querySelector('div[data-view="entries"]');
-const $aNEW = $divEntries.querySelector('#new');
+const $aNew = $divEntries.querySelector('#new');
 const $ul = $divEntries.querySelector('ul');
 //  dialog
 const $dialog = document.querySelector('dialog');
@@ -32,7 +32,7 @@ const domQueries = {
   $formHeading,
   $deleteEntry,
   $divEntries,
-  $aNEW,
+  $aNew,
   $ul,
   $dialog,
   $cancel,
@@ -208,8 +208,8 @@ function viewSwap(string) {
 $aEntries.addEventListener('click', () => {
   viewSwap('entries');
 });
-//  $aNEW handleClick
-$aNEW.addEventListener('click', () => {
+//  $aNew handleClick
+$aNew.addEventListener('click', () => {
   if ($photoUrl.value) $photoUrl.value = '';
   if ($title.value) $title.value = '';
   if ($notes.value) $notes.value = '';

@@ -25,7 +25,7 @@ const $deleteEntry = $form.querySelector('#delete-entry') as HTMLAnchorElement;
 const $divEntries = document.querySelector(
   'div[data-view="entries"]'
 ) as HTMLDivElement;
-const $aNEW = $divEntries.querySelector('#new') as HTMLAnchorElement;
+const $aNew = $divEntries.querySelector('#new') as HTMLAnchorElement;
 const $ul = $divEntries.querySelector('ul') as HTMLUListElement;
 //  dialog
 const $dialog = document.querySelector('dialog') as HTMLDialogElement;
@@ -44,7 +44,7 @@ const domQueries: Record<string, any> = {
   $formHeading,
   $deleteEntry,
   $divEntries,
-  $aNEW,
+  $aNew,
   $ul,
   $dialog,
   $cancel,
@@ -231,8 +231,8 @@ $aEntries.addEventListener('click', () => {
   viewSwap('entries');
 });
 
-//  $aNEW handleClick
-$aNEW.addEventListener('click', () => {
+//  $aNew handleClick
+$aNew.addEventListener('click', () => {
   if ($photoUrl.value) $photoUrl.value = '';
   if ($title.value) $title.value = '';
   if ($notes.value) $notes.value = '';
